@@ -1,5 +1,5 @@
 body {
-  font-family: "Noto Sans JP", Arial, Helvetica, sans-serif
+  font-family: "Noto Sans JP", Arial, Helvetica, sans-serif;
   padding: 20px;
 }
 
@@ -23,7 +23,7 @@ form
   width: 30%;
 }
 .form-field{
-  width: 70%;
+  width: 60%;
 }
 .form-button{
   text-align: center; /*textを寄せる設定*/
