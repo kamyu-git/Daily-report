@@ -6,12 +6,12 @@ import {query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 
 // Firebase設定
 const firebaseConfig = {
-  apiKey: "AIzaSyA9slk9vkquth1URURtzc4HOs5oUPMDlqU",
-  authDomain: "daily-report-162c3.firebaseapp.com",
-  projectId: "daily-report-162c3",
-  storageBucket: "daily-report-162c3.firebasestorage.app",
-  messagingSenderId: "910829274060",
-  appId: "1:910829274060:web:fba60ae6caea344edf1369"
+  apiKey:import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain:import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId:import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket:import.meta.env.VITE_FIREBASE_STORAGE_BUCKET ,
+  messagingSenderId:import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId:import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Firebaseを使える状態にセットアップ
