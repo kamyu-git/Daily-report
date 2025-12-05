@@ -1,0 +1,28 @@
+body{
+  font-family: "Noto+Sans+JP",Arial, Helvetica, sans-serif;
+}
+
+/*
+table
+*/
+.table{
+  width: 100%;
+}
+.table-head{
+  background-color: #eee;
+}
+.table-head th{
+  border: 1px solid #000;
+  text-align: center;
+  padding: 5px;
+  width: 15%;
+}
+.table-head th:nth-child(4){
+  /*連続した要素のうちn番目にのみCSSを当てる*/
+  width: 55%;
+}
+.table-body td{
+  text-align: left;
+  border: 1px solid #000;
+  padding: 10px;
+}
