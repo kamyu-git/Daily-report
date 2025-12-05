@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc}
 from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import {query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"
 
 // Firebase設定
 const firebaseConfig = {
@@ -25,15 +26,18 @@ const db = getFirestore(app);
 const fetchHistoryData = async () => {
   let tags = "";
 
-  //reportコレクションのデータを取得
-  const querySnapshot = await getDocs(collection(db, "report"));
+//データを新しい順にならべる
+const q = query(collection(db, "report"), orderBy("date", "desc"));
+
+//reportコレクションのデータを取得
+const querySnapshot = await getDocs(q);
 
 //データをテーブルの表の形式に合わせてHTMLに挿入
   querySnapshot.forEach((doc) => {
     console.log(`${doc.id} => ${doc.data()}`);
     tags += `
       <tr>
-        <td>${doc.data().date.toDate().toLocalString()}</td>
+        <td>${doc.data().date.toDate().toLocaleString()}</td>
         <td>${doc.data().name}</td>
         <td>${doc.data().work}</td>
         <td>${doc.data().comment}</td>
@@ -68,7 +72,10 @@ const submitData = async (e) => {
     }
 };
 
-//CloudFirestoreにデータを送信する
+//CloudFirestoreにデータを送信する&登録しましたアラート
 if(document.getElementById("js-form")) {
-   document.getElementById("js-form").addEventListener("submit",(e) => submitData(e));
+   document.getElementById("js-form").addEventListener("submit",(e) => {e.preventDefault();
+   submitData(e);
+   alert("登録しました！");
+  });
 }
