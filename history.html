@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    <link rel = "stylesheet" href="./sanitize.css">
+    <link rel = "stylesheet" href="./style.css">
+  </head>
+  <body>
+<!--table(表)-->
+    <table class="table"> <!--表全体を作る-->
+      <thead class="table-head"> <!--表の見出し部分を作る-->
+        <tr> <!--行を作る 1行＝1<tr>-->
+          <th>Date</th> <!--表の見出しセル。太文字で中央寄せされるのがデフォ-->
+          <th>Name</th>
+          <th>Work</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <thead class="table-body" id="js-histry">
+        <!--CSSで見た目を変えれる、JSで特手の要素を操作できる-->
+        <tr>
+          <td>2024/01/01 10:00</td> <!--普通のセル(データセル)-->
+          <td>山田</td>
+          <td>コーディング</td>
+          <td>TOPページの作成およびABOUTページの修正を実施</t>
+        </tr>
+      </thead>
+    </table>
+
+<!--Home History-->
+  <div class="history-link">
+    <a href="./">Home</a>
+    <a href="./history.html">History</a>
+  </div>
+</form>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
