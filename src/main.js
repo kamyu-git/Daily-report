@@ -1,6 +1,6 @@
 // 自分が使いたい関数だけ、必要な SDK から読み込もう
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, query, orderBy}
+import { getFirestore, collection, getDocs, addDoc, query, orderBy, Timestamp}
 from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // Firebase設定
@@ -20,27 +20,32 @@ const db = getFirestore(app);
 
 //Cloud Firestoreから取得したデータを表示、
 //fetch=データをサーバーから取得するための関数
+// main.js の fetchHistoryData 関数全体
+
 const fetchHistoryData = async () => {
   const tableBody = document.getElementById("js-history");
   if (!tableBody) return;
   let tags = "";
 
-//データを新しい順にならべる
-const q = query(collection(db, "report"), orderBy("date", "desc"));
+  const q = query(collection(db, "report"), orderBy("date", "desc"));
 
-//reportコレクションのデータを取得
-const querySnapshot = await getDocs(q);
-console.log("querySnapshot:", querySnapshot.size);
+  const querySnapshot = await getDocs(q);
+  console.log("querySnapshot:", querySnapshot.size);
 
-//データをテーブルの表の形式に合わせてHTMLに挿入
+  // データをテーブルの表の形式に合わせてHTMLに挿入
   querySnapshot.forEach((doc) => {
-    const data = doc.data();
+    // 【1. データを取得】: data 変数に格納 (OK)
+    const data = doc.data(); 
+
+    // 【2. 日付を処理】: dateObject を作成 (OK)
+    const dateObject = data.date.toDate ? data.date.toDate() : new Date(data.date);
+
     tags += `
       <tr>
-        <td>${new Date(data.date).toLocaleString()}</td>
-        <td>${doc.data().name}</td>
-        <td>${doc.data().work}</td>
-        <td>${doc.data().comment}</td>
+        <td>${dateObject.toLocaleString()}</td>
+        <td>${data.name}</td>
+        <td>${data.work}</td>
+        <td>${data.comment}</td>
       </tr>`
   });
   document.getElementById("js-history").innerHTML = tags;
@@ -60,7 +65,7 @@ const submitData = async (e) => {
 
     try{
       await addDoc(collection(db,"report"),{
-        date: new Date(),
+        date: Timestamp.fromDate(new Date()),
         name: formData.get("name"),
         work: formData.get("work"),
         comment: formData.get("comment")
