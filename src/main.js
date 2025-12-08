@@ -17,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
 //Cloud Firestoreから取得したデータを表示、
 //fetch=データをサーバーから取得するための関数
 const fetchHistoryData = async () => {
